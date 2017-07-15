@@ -58,6 +58,8 @@ public class Board
         }
       }
     }
+    
+    
    
     
     //hit detectie?

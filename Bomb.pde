@@ -14,24 +14,18 @@ public class Bomb
   }
  public void display() 
   {
-    
-    if (m_counter < 60) {
-      bombDrop();
-      m_counter++;
-    } else if (m_counter < 120)
-    {
-      nearExplosion();
-      m_counter++;
-    } else  
-    {
+    m_counter++;
+    if (m_counter == 145) {
+      m_hasExploded = true;
+    }else if(m_counter > 120){
       explosion();
-      m_counter++;
+    }else if (m_counter/30 % 2 == 0) {
+      bombDrop();
+    } else if (m_counter/30 % 2 == 1) {
+      nearExplosion();
     }
 
-    if (m_counter == 145)
-    {
-      m_hasExploded = true;
-    }
+    
     //(img, posX, posY, size, size, pixelstart, pixelstart, pixelend, pixelend)
   }
 

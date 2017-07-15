@@ -51,6 +51,7 @@ class Player
       image(m_player, getScreenX(), getScreenY(), 30, 30, 68+(m_counter%4*17), 0, 85+(m_counter%4*17), 21);
     }
     
+    //display bombs
     for(int i = 0; i < bombList.size();i++){
       if(!bombList.get(i).hasExploded()){
         bombList.get(i).display();
@@ -61,47 +62,36 @@ class Player
       
     }
   }
-  public void moveRight()
-  {
+  
+  private void timerIncr(){
     timer++;
     if (timer == 20) 
     {
       m_counter++ ; 
       timer = 0 ;
     }
+  }
+  public void moveRight()
+  {
+    timerIncr();
     incrX();
     m_direction = RIGHT;
   }
   public void moveLeft()
   {
-    timer++;
-    if (timer == 20) 
-    { 
-      m_counter++ ; 
-      timer = 0 ;
-    }
+    timerIncr();
     decrX();
     m_direction = LEFT;
   }
   public void moveDown()
   {
-    timer++;
-    if (timer == 20) 
-    {
-      m_counter++ ; 
-      timer = 0 ;
-    }
+    timerIncr();
     incrY();
     m_direction = DOWN;
   }
   public void moveUp()
   {
-    timer++;
-    if (timer == 20) 
-    {
-      m_counter++ ; 
-      timer = 0 ;
-    }
+    timerIncr();
     decrY();
     m_direction = UP;
   }
