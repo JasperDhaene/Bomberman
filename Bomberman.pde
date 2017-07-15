@@ -36,45 +36,13 @@ void setup()
 }
 
 
-
+//NOTE: function name is 'draw', but better think of it as 'game-loop'. Draw implies rendering has to happen here and that is its main purpose. It is not.
 void draw()
 {
-  background(1, 186, 0);
-
-  this.board.display();
-  // bricks(destroyable) blijven op het moment constant resetten. geprobeerd om er rond te werken, maar iedere keer moest mn background weg uit mn draw, en dat zorgt voor lelijke trails. Nog niet gevonden hoe ik het 'proper' moet doen.
-
-  //Er is ook geen hit detectie, ik ben pas op het punt geraakt waar ik mn vaste blokken kan inladen, en hit detection met de blocken was nog iets buiten mijn verstandscapaciteiten.
-  if ( keyPressed == true) 
-  {
-    //print("a");
-
-    if (key == 'd' || keyCode == RIGHT )
-    {
-      this.player.moveRight();
-    }
-    if (key == 'a' || keyCode == LEFT)
-    {
-      this.player.moveLeft();
-    }
-    if (key == 's' || keyCode == DOWN)
-    {
-      this.player.moveDown();
-    }
-    if (key == 'w' || keyCode == UP)
-    {
-      this.player.moveUp();
-    }
-    if (key == ' ')
-    {
-      this.player.display();
-    }
-  } else { 
-    this.player.display();
-  }
-  
-  this.hud.timer();
-  
+  checkInput();
+  //updateMovement();
+  //checkCollision();
+  render();
   
   /*
   if (key == ' ' && bombPlaced == false )
@@ -107,6 +75,43 @@ void draw()
   }
   */
   
+}
+
+void checkInput(){
+  if ( keyPressed == true) 
+  {
+    if (key == 'd' || keyCode == RIGHT )
+    {
+      player.moveRight();
+    }
+    if (key == 'a' || keyCode == LEFT)
+    {
+      player.moveLeft();
+    }
+    if (key == 's' || keyCode == DOWN)
+    {
+      player.moveDown();
+    }
+    if (key == 'w' || keyCode == UP)
+    {
+      player.moveUp();
+    }
+  }
+}
+
+void updateMovement(){
+  
+}
+void checkCollision(){
+  
+}
+
+void render(){
+   background(1, 186, 0);
+
+   board.display();
+   player.display();
+   hud.timer();
 }
 
 
