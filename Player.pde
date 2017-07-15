@@ -10,7 +10,7 @@ class Player
   private int m_hudY;
   private int m_playerWidth;
   private int m_playerHeight;
-  
+  private int m_amountOfBombs;
   
   final static int DOWN = 0;
   final static int RIGHT = 1;
@@ -28,6 +28,7 @@ class Player
     m_hudY = 100;
     m_playerWidth = 28; //best beetje kleiner om toch te kunnen bewegen
     m_playerHeight = 28;
+    m_amountOfBombs = 1;
   }
   public void display() 
   {
@@ -142,5 +143,8 @@ class Player
   public int getPlayerDirection()
   {
     return m_direction;
+  }
+  public int getAmountOfBombs(){
+    return m_amountOfBombs;  
   }
 }

@@ -43,7 +43,7 @@ void draw()
   //updateMovement();
   checkCollision();
   render();
-  renderBlockNumbers();
+  //renderBlockNumbers();
   
   /*
   if (key == ' ' && bombPlaced == false )
@@ -96,6 +96,9 @@ void checkInput(){
     if (key == 'w' || keyCode == UP)
     {
       player.moveUp();
+    }
+    if (key == ' '){
+      
     }
   }
 }

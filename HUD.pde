@@ -38,6 +38,9 @@ class HUD
       fill(0, 0, 0);
     }
     textSize(20);
-    text (clock, 20, 20);
+    text (clock, width-60, 20);
+    
+    textSize(20);
+    text ("Bombs:" + player.getAmountOfBombs(), 20, 20);
   }
 }
