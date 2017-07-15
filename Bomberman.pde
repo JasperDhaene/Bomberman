@@ -11,16 +11,17 @@ Hit detectie : Geen enkel idee hoe ik ervoor kan zorgen dat mn bomberman niet do
 
 
 */
-Board b1;
-Player p1;
-Bomb bomb1;
-HUD h1;
+
+//NOTE: This is GLOBAL EVERYWHERE. No encapsulating class.
+Board board;
+Player player;
+HUD hud;
+ArrayList<Bomb> bombList = new ArrayList<Bomb>();
+//boolean bombPlaced = false;
+//int counterBomb=0;
 
 
-int[] bombArr = new int[0];
 
-boolean bombPlaced = false;
-int counterBomb=0;
 
 
 void setup()
@@ -28,10 +29,9 @@ void setup()
 {
   background(1, 186, 0);
   size(480, 516);
-  b1 = new Board();
-  p1 = new Player();
-  bomb1 = new Bomb();
-  h1 = new HUD();
+  this.board = new Board();
+  this.player = new Player();
+  this.hud = new HUD();
   
 }
 
@@ -40,14 +40,9 @@ void setup()
 void draw()
 {
   background(1, 186, 0);
-  
 
-
-  b1.display();
+  this.board.display();
   // bricks(destroyable) blijven op het moment constant resetten. geprobeerd om er rond te werken, maar iedere keer moest mn background weg uit mn draw, en dat zorgt voor lelijke trails. Nog niet gevonden hoe ik het 'proper' moet doen.
-
-
-  
 
   //Er is ook geen hit detectie, ik ben pas op het punt geraakt waar ik mn vaste blokken kan inladen, en hit detection met de blocken was nog iets buiten mijn verstandscapaciteiten.
   if ( keyPressed == true) 
@@ -56,33 +51,37 @@ void draw()
 
     if (key == 'd' || keyCode == RIGHT )
     {
-      p1.moveRight();
+      this.player.moveRight();
     }
     if (key == 'a' || keyCode == LEFT)
     {
-      p1.moveLeft();
+      this.player.moveLeft();
     }
     if (key == 's' || keyCode == DOWN)
     {
-      p1.moveDown();
+      this.player.moveDown();
     }
     if (key == 'w' || keyCode == UP)
     {
-      p1.moveUp();
+      this.player.moveUp();
     }
     if (key == ' ')
     {
-      p1.display();
+      this.player.display();
     }
   } else { 
-    p1.display();
+    this.player.display();
   }
   
+  this.hud.timer();
+  
+  
+  /*
   if (key == ' ' && bombPlaced == false )
   {
     counterBomb = 0;
     bombPlaced = true;
-    bomb1.display();
+    //bomb1.display();
   }
   if (bombPlaced == true )
   {
@@ -106,7 +105,8 @@ void draw()
       counterBomb = 0;
     }
   }
-  h1.timer();
+  */
+  
 }
 
 

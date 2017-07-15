@@ -1,9 +1,15 @@
 public class Board
 {
   public PImage m_board, m_block, m_brick, m_grass;
-  private int colom, row;
+  private int col, row;
   private String board[] ;
   private int arrayBoard [][];
+  
+  final static int FREE = 0;
+  final static int WALL = 1;
+  final static int SPAWN = 2;
+  final static int BRICK = 3;
+  
 
   //String[] list = split(board,';');
 
@@ -14,16 +20,19 @@ public class Board
     m_brick = loadImage("Block_breakable.png");
     board = loadStrings("startLayout.txt");
     row = board.length;
-    colom = board[0].split(";").length;
-    arrayBoard = new int [row][colom];
+    col = board[0].split(";").length;
+    arrayBoard = new int [row][col];
+    
+    //INIT BOARD FROM FILE
     for (int i=0; i < row; i++) {
-      for (int j= 0; j< colom; j++) {
+      for (int j= 0; j< col; j++) {
         arrayBoard [i][j] = int (board[i].split(";")[j]);
       }
     }
     
+    //GENERATE DESTROYABLE BLOCKS
     for (int i=1; i < row; i++) {
-      for (int j= 1; j< colom; j++) {
+      for (int j= 1; j< col; j++) {
         if ( arrayBoard [i][j] == 0) {
           if ( random(0, 5) > 3) {
             arrayBoard [i][j] = 3;
@@ -35,12 +44,12 @@ public class Board
   public void display() 
   {
     for (int i=0; i < row; i++) {
-      for (int j= 0; j< colom; j++) {
-        if ( arrayBoard [i][j] == 1) {
+      for (int j= 0; j< col; j++) {
+        if ( arrayBoard [i][j] == WALL) {
           m_block.resize( 32, 32);
 
           image( m_block, j*32, 100+(i*32));
-        }else if( arrayBoard [i][j] == 3) {
+        }else if( arrayBoard [i][j] == BRICK) {
           m_brick.resize(32,32);
           image( m_brick,j*32, 100+(i*32));
         }

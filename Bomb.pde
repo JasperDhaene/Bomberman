@@ -6,7 +6,7 @@ public class Bomb
   public Boolean bombExploded;
 
   public PImage m_bomb;
-  public Bomb() {
+  public Bomb( ) {
 
     m_bomb = loadImage("Bomb_sprite.png");
   }
@@ -15,8 +15,8 @@ public class Bomb
 
     if (key == ' ' ) 
     {
-      b_posX = p1.getPosX();
-      b_posY = p1.getPosY();
+      b_posX = player.getPosX();
+      b_posY = player.getPosY();
     }
     //(img, posX, posY, size, size, pixelstart, pixelstart, pixelend, pixelend)
   }
