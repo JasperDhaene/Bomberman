@@ -27,8 +27,8 @@ ArrayList<Bomb> bombList = new ArrayList<Bomb>();
 void setup()
 
 {
+  size(480, 516); //Always first!
   background(1, 186, 0);
-  size(480, 516);
   this.board = new Board();
   this.player = new Player();
   this.hud = new HUD();
@@ -103,7 +103,11 @@ void updateMovement(){
   
 }
 void checkCollision(){
-  
+  for(int i = 0; i<board.getRow();i++){
+    for(int j = 0; j<board.getCol();j++){
+        
+    }
+  }
 }
 
 void render(){
