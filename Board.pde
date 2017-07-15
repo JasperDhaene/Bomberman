@@ -10,6 +10,7 @@ public class Board
   final static int WALL = 1;
   final static int SPAWN = 2;
   final static int BRICK = 3;
+  final static int BOMB = 4;
   
 
   //String[] list = split(board,';');

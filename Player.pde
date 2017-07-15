@@ -11,6 +11,7 @@ class Player
   private int m_playerWidth;
   private int m_playerHeight;
   private int m_amountOfBombs;
+  private ArrayList<Bomb> bombList;
   
   final static int DOWN = 0;
   final static int RIGHT = 1;
@@ -29,6 +30,8 @@ class Player
     m_playerWidth = 28; //best beetje kleiner om toch te kunnen bewegen
     m_playerHeight = 28;
     m_amountOfBombs = 1;
+    bombList = new ArrayList<Bomb>();
+    
   }
   public void display() 
   {
@@ -46,6 +49,16 @@ class Player
     } else if (m_direction == UP)
     {
       image(m_player, getScreenX(), getScreenY(), 30, 30, 68+(m_counter%4*17), 0, 85+(m_counter%4*17), 21);
+    }
+    
+    for(int i = 0; i < bombList.size();i++){
+      if(!bombList.get(i).hasExploded()){
+        bombList.get(i).display();
+      }else{
+        m_amountOfBombs++;
+        bombList.remove(i);
+      }
+      
     }
   }
   public void moveRight()
@@ -91,6 +104,13 @@ class Player
     }
     decrY();
     m_direction = UP;
+  }
+  
+  public void dropBomb(){
+    if(m_amountOfBombs>0){
+      m_amountOfBombs--;
+      bombList.add(new Bomb());
+    }
   }
   
   public void incrX(){

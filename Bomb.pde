@@ -1,22 +1,36 @@
 public class Bomb
 {
 
-  public float b_posX, b_posY;
-  public int b_counter;
-  public Boolean bombExploded;
+  public float m_posX, m_posY;
+  public int m_counter;
+  public boolean m_hasExploded;
 
   public PImage m_bomb;
   public Bomb( ) {
-
     m_bomb = loadImage("Bomb_sprite.png");
+    m_posX = player.getScreenX();
+    m_posY = player.getScreenY();
+    m_hasExploded = false;
   }
  public void display() 
   {
-
-    if (key == ' ' ) 
+    
+    if (m_counter < 60) {
+      bombDrop();
+      m_counter++;
+    } else if (m_counter < 120)
     {
-      b_posX = player.getPosX();
-      b_posY = player.getPosY();
+      nearExplosion();
+      m_counter++;
+    } else  
+    {
+      explosion();
+      m_counter++;
+    }
+
+    if (m_counter == 145)
+    {
+      m_hasExploded = true;
     }
     //(img, posX, posY, size, size, pixelstart, pixelstart, pixelend, pixelend)
   }
@@ -25,16 +39,20 @@ public class Bomb
   public void bombDrop()
   {
 
-    image(m_bomb, b_posX+5, b_posY+5, 20, 20, 53, 7, 69, 24);
+    image(m_bomb, m_posX+5, m_posY+5, 20, 20, 53, 7, 69, 24);
   }
   public void nearExplosion()
   {
 
-    image(m_bomb, b_posX+5, b_posY+5, 20, 20, 197, 2, 213, 19);
+    image(m_bomb, m_posX+5, m_posY+5, 20, 20, 197, 2, 213, 19);
   }
   public void explosion()
   {
 
-    image(m_bomb, b_posX, b_posY, 30, 30, 73, 1, 96, 24);
+    image(m_bomb, m_posX, m_posY, 30, 30, 73, 1, 96, 24);
+  }
+  
+  public boolean hasExploded(){
+    return m_hasExploded;
   }
 }

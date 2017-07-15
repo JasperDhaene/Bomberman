@@ -16,7 +16,6 @@ Hit detectie : Geen enkel idee hoe ik ervoor kan zorgen dat mn bomberman niet do
 Board board;
 Player player;
 HUD hud;
-ArrayList<Bomb> bombList = new ArrayList<Bomb>();
 //boolean bombPlaced = false;
 //int counterBomb=0;
 
@@ -98,7 +97,7 @@ void checkInput(){
       player.moveUp();
     }
     if (key == ' '){
-      
+      player.dropBomb();
     }
   }
 }
