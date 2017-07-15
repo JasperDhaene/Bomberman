@@ -8,6 +8,8 @@ class Player
   private int timer;
   private int m_hudX;
   private int m_hudY;
+  private int m_playerWidth;
+  private int m_playerHeight;
   
   
   final static int DOWN = 0;
@@ -24,6 +26,8 @@ class Player
     m_direction = DOWN;
     m_hudX = 0;
     m_hudY = 100;
+    m_playerWidth = 28; //best beetje kleiner om toch te kunnen bewegen
+    m_playerHeight = 28;
   }
   public void display() 
   {
@@ -51,7 +55,7 @@ class Player
       m_counter++ ; 
       timer = 0 ;
     }
-    m_posX += m_move;
+    incrX();
     m_direction = RIGHT;
   }
   public void moveLeft()
@@ -62,7 +66,7 @@ class Player
       m_counter++ ; 
       timer = 0 ;
     }
-    m_posX -= m_move;
+    decrX();
     m_direction = LEFT;
   }
   public void moveDown()
@@ -73,7 +77,7 @@ class Player
       m_counter++ ; 
       timer = 0 ;
     }
-    m_posY += m_move;
+    incrY();
     m_direction = DOWN;
   }
   public void moveUp()
@@ -84,8 +88,21 @@ class Player
       m_counter++ ; 
       timer = 0 ;
     }
-    m_posY -= m_move;
+    decrY();
     m_direction = UP;
+  }
+  
+  public void incrX(){
+    m_posX+=m_move;
+  }
+  public void incrY(){
+    m_posY+=m_move;
+  }
+  public void decrX(){
+    m_posX-=m_move;
+  }
+  public void decrY(){
+    m_posY-=m_move;
   }
   
   public float getScreenX() //to be used for rendering
@@ -104,5 +121,26 @@ class Player
   public float getPosY()
   {
     return m_posY;
+  }
+  public void setPosX(float x) //to be used for internal logic
+  {
+    m_posX = x;
+  }
+  public void setPosY(float y)
+  {
+    m_posY = y;
+  }
+  
+  public int getPlayerHeight() //to be used for internal logic
+  {
+    return m_playerHeight;
+  }
+  public int getPlayerWidth()
+  {
+    return m_playerWidth;
+  }
+  public int getPlayerDirection()
+  {
+    return m_direction;
   }
 }

@@ -4,6 +4,7 @@ public class Board
   private int col, row;
   private String board[] ;
   private int arrayBoard [][];
+  private int m_hudY;
   
   final static int FREE = 0;
   final static int WALL = 1;
@@ -22,6 +23,7 @@ public class Board
     row = board.length;
     col = board[0].split(";").length;
     arrayBoard = new int [row][col];
+    m_hudY = 100;
     
     //INIT BOARD FROM FILE
     for (int i=0; i < row; i++) {
@@ -33,9 +35,9 @@ public class Board
     //GENERATE DESTROYABLE BLOCKS
     for (int i=1; i < row; i++) {
       for (int j= 1; j< col; j++) {
-        if ( arrayBoard [i][j] == 0) {
+        if ( arrayBoard [i][j] == FREE) {
           if ( random(0, 5) > 3) {
-            arrayBoard [i][j] = 3;
+            arrayBoard [i][j] = BRICK;
           }
         }
       }
@@ -51,13 +53,11 @@ public class Board
           image( m_block, j*32, 100+(i*32));
         }else if( arrayBoard [i][j] == BRICK) {
           m_brick.resize(32,32);
-          image( m_brick,j*32, 100+(i*32));
+          image( m_brick,j*32, m_hudY+(i*32));
         }
       }
     }
-    //Dit stuk laad de bricks in, maar op het moment is het 1 keer per frame, constant 
-    
-      
+   
     
     //hit detectie?
     //some boolean, if player moves into square, return true, if true, m_move = 0

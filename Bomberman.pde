@@ -41,8 +41,9 @@ void draw()
 {
   checkInput();
   //updateMovement();
-  //checkCollision();
+  checkCollision();
   render();
+  renderBlockNumbers();
   
   /*
   if (key == ' ' && bombPlaced == false )
@@ -103,8 +104,23 @@ void updateMovement(){
   
 }
 void checkCollision(){
-  for(int i = 0; i<board.getRow();i++){
-    for(int j = 0; j<board.getCol();j++){
+  for(int i = 0; i < board.getRow();i++){
+    for(int j = 0; j < board.getCol();j++){
+      if(board.arrayBoard[i][j] == board.WALL || board.arrayBoard[i][j] == board.BRICK){
+        
+        //TODO: why is i and j switched here?? Logical representation different from graphical one?!
+        if(abs(player.getPosX() - j*32) < player.getPlayerWidth() && abs(player.getPosY() - i*32) < player.getPlayerHeight()  ){
+          switch(player.getPlayerDirection()){
+            //Do the opposite of the player's direction
+            case Player.UP: player.incrY();break;
+            case Player.DOWN: player.decrY();break;
+            case Player.LEFT: player.incrX();break;
+            case Player.RIGHT: player.decrX();break;
+            
+          }
+        }
+        
+      }
         
     }
   }
@@ -118,6 +134,16 @@ void render(){
    hud.timer();
 }
 
+void renderBlockNumbers(){
+  for(int i = 0; i < board.getRow();i++){
+    for(int j = 0; j < board.getCol();j++){
+      textSize(32);
+      text(board.arrayBoard[i][j], j*32 , i*32 + 130);
+    }
+  }
+  
+   
+}
 
 
 
