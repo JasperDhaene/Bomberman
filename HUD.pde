@@ -2,6 +2,8 @@ class HUD
 {
   private int time;
   private int clock = 1000;
+  final static int m_hudX = 0; //just so everybody can ask the HUD
+  final static int m_hudY = 100;
   HUD()
   {
     time = 0;
@@ -43,4 +45,11 @@ class HUD
     textSize(20);
     text ("Bombs:" + player.getAmountOfBombs(), 20, 20);
   }
+  public int getHudX(){
+    return m_hudX;
+  }
+  public int getHudY(){
+    return m_hudY;
+  }
+  
 }

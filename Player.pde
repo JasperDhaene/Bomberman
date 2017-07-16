@@ -25,8 +25,8 @@ class Player
     m_posY = 35;
     m_move = 1;
     m_direction = DOWN;
-    m_hudX = 0;
-    m_hudY = 100;
+    m_hudX = hud.getHudX();
+    m_hudY = hud.getHudY();
     m_playerWidth = 28; //best beetje kleiner om toch te kunnen bewegen
     m_playerHeight = 28;
     m_amountOfBombs = 1;

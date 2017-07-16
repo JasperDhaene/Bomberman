@@ -67,6 +67,10 @@ public class Board
     // bord is 13 box hoog, 15 lang
   }
   
+  public void bombHasExploded(float m_posX,float m_posY){
+    
+  }
+  
   public int getCol(){
     return col;
   }

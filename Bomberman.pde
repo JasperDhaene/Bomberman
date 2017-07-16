@@ -12,15 +12,10 @@ Hit detectie : Geen enkel idee hoe ik ervoor kan zorgen dat mn bomberman niet do
 
 */
 
-//NOTE: This is GLOBAL EVERYWHERE. No encapsulating class.
+//NOTE: This is GLOBAL EVERYWHERE. No encapsulating class. #fuckSoftwareDesign #LetsFrankensteinIt
 Board board;
 Player player;
 HUD hud;
-//boolean bombPlaced = false;
-//int counterBomb=0;
-
-
-
 
 
 void setup()
@@ -28,9 +23,10 @@ void setup()
 {
   size(480, 516); //Always first!
   background(1, 186, 0);
+  this.hud = new HUD();
   this.board = new Board();
   this.player = new Player();
-  this.hud = new HUD();
+  
   
 }
 
